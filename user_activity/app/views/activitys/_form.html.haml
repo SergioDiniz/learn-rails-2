@@ -1,0 +1,5 @@
+= form_for @activity, url: {action: 'create'} do |f|
+	.form-group
+		= f.text_area :description, class: 'form-control'
+
+	= f.submit 'Salvar', class: 'btn btn-primary'
