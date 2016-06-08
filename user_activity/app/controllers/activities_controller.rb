@@ -1,5 +1,6 @@
 class ActivitiesController < ApplicationController
 	before_action :find_activity, only: [:show, :edit, :update, :destroy] 
+	before_action :require_authentication, only: [:new, :create, :edit, :update, :destroy]
 
 	def index
 		@activities = Activity.all.order('created_at DESC')

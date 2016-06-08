@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   resources :user_sessions, only: [:create, :new, :destroy]
 
+  get 'perfil/:id' => 'users#visit'
 
   root 'activities#index'
 
