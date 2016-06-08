@@ -6,12 +6,14 @@
 	%ul.list-unstyled.list-activity
 		%li
 			%div.description= @activity.description
+			%div= @activity.user.full_name
 			%div.created_at
 				postado em: 
 				= @activity.created_at.strftime("%d %b %Y")
-			%div.text-right
-				%button.btn.btn-link= link_to "Editar", edit_activity_path
-				%button.btn.btn-link= link_to "Deletar", activity_path, method: :delete, data: {confirm: "Você tem certeza?"}
+			- if belogns_to_user(@activity)
+				%div.text-right
+					%button.btn.btn-link= link_to "Editar", edit_activity_path
+					%button.btn.btn-link= link_to "Deletar", activity_path, method: :delete, data: {confirm: "Você tem certeza?"}
 
 	= link_to root_path do
 		%button.btn.btn-default Voltar

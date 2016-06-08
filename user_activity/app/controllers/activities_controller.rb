@@ -1,5 +1,5 @@
 class ActivitiesController < ApplicationController
-	before_action :find_activity, only: [:show, :edit, :update, :destroy] 
+	before_action :find_activity, only: [:edit, :update, :destroy] 
 	before_action :require_authentication, only: [:new, :create, :edit, :update, :destroy]
 
 	def index
@@ -7,14 +7,15 @@ class ActivitiesController < ApplicationController
 	end
 
 	def show
+		@activity = Activity.find(params[:id])
 	end
 
 	def new
-		@activity = Activity.new
+		@activity = current_user.activities.build
 	end
 
 	def create
-		@activity = Activity.new(activity_params)
+		@activity = current_user.activities.build(activity_params)
 
 		if @activity.save
 			redirect_to root_path, notice: "Postado com Sucesso!"
@@ -27,6 +28,7 @@ class ActivitiesController < ApplicationController
 	end
 
 	def update
+
 		if @activity.update(activity_params)
 			redirect_to @activity, notice: "Atualizado com Sucesso!"
 		else
@@ -46,7 +48,8 @@ class ActivitiesController < ApplicationController
 	end
 
 	def find_activity
-		@activity = Activity.find(params[:id])
+		# @activity = Activity.find(params[:id])
+		@activity = current_user.activities.find(params[:id])
 	end
 
 end
