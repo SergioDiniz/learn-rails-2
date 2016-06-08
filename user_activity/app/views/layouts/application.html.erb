@@ -10,11 +10,11 @@
 
 <nav class="navbar navbar-default">
   <div class="container-fluid">
-    <div class="navbar-header navbar-right">
-    	<%= link_to 'Inicio', root_path, class: 'navbar-brand' %>
-    	<%= link_to 'Login', new_user_path, class: 'navbar-brand' %>
-    	<%= link_to 'Novo', new_user_path, class: 'navbar-brand' %>
-    </div>
+    <% if user_signed_in? %>
+      <%= render 'layouts/signed_navbar' %>
+    <% else %>
+      <%= render 'layouts/visitor_navbar' %>
+    <% end %>
   </div>
 </nav>
 

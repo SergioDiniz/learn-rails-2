@@ -29,4 +29,8 @@ class UsersController < ApplicationController
 	def find_user
 		@user = User.find(params[:id])
 	end
+
+	def destroy
+		@session[:user_id] = nil
+	end
 end
