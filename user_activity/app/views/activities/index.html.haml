@@ -1,0 +1,27 @@
+%h1.text-center Bem Vindo!
+%br
+.col-md-8.col-md-offset-2
+
+	= render 'flash'
+
+	%ul.list-unstyled.list-activity
+		- @activities.each do |activity|
+			%li
+				%div.description= truncate(activity.description, length: 200, separator: ' ', omission: '... (continuar)')
+				%div.created_at
+					postado em: 
+					= activity.created_at.strftime("%d %b %Y")
+				%div.text-right
+					%button.btn.btn-link= link_to "visualizar", activity
+
+	= link_to new_activity_path do
+		%button.btn.btn-default.pull-right Novo
+
+	
+
+	%br
+	%br
+	%br
+
+
+

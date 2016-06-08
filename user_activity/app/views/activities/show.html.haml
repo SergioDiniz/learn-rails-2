@@ -1,0 +1,17 @@
+.col-md-6.col-md-offset-3
+	%h2 Atividade:
+
+	= render 'flash'
+
+	%ul.list-unstyled.list-activity
+		%li
+			%div.description= @activity.description
+			%div.created_at
+				postado em: 
+				= @activity.created_at.strftime("%d %b %Y")
+			%div.text-right
+				%button.btn.btn-link= link_to "Editar", edit_activity_path
+				%button.btn.btn-link= link_to "Deletar", activity_path, method: :delete, data: {confirm: "Você tem certeza?"}
+
+	= link_to root_path do
+		%button.btn.btn-default Voltar

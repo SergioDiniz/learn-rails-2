@@ -1,0 +1,23 @@
+@import "shadow";
+
+
+
+.list-activity{
+
+
+	li{
+		padding: 15px;
+		margin-bottom: 30px;
+		@include shadow(#ccc, 0, 3px, 6px);
+		background-color: #fff;
+
+		.description{
+			font-size: 18px;
+		}
+
+		.created_at{
+			font-size: 11px;
+			color: #666;
+		}
+	}
+}

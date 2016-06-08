@@ -1,0 +1,5 @@
+= form_for @activity do |f|
+	.form-group
+		= f.text_area :description, class: 'form-control', rows: 10
+
+	= f.submit 'Salvar', class: 'btn btn-primary'
