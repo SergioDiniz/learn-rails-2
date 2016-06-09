@@ -1,2 +1,17 @@
 .text-center Visitando:
 %h1.text-center= @user_visit.full_name
+%h3.text-center Postagens:
+%br
+.col-md-8.col-md-offset-2
+	%ul.list-unstyled.list-activity
+		- @user.activities.each do |activity|
+			%li
+				%div.description= truncate(activity.description, length: 200, separator: ' ', omission: '... (continuar)')
+				%div
+					por: 
+					= link_to activity.user.full_name, controller: "users", action: "visit", id: activity.user
+				%div.created_at
+					postado em: 
+					= activity.created_at.strftime("%d %b %Y")
+				%div.text-right
+					%button.btn.btn-link= link_to "visualizar", activity

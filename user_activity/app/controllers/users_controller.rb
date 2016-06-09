@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-	before_action :find_user, only: [:show]
+	before_action :find_user, only: [:show, :update, :destroy, :index]
 	before_action :require_no_authentication, only: [:new, :create]
-	before_action :require_authentication, only: [:index, :show, :edit, :update]
+	before_action :require_authentication, only: [:index, :show, :edit, :update, :destroy]
 	before_action :can_change, only: [:edit, :update, :show]
 
 	def index
@@ -26,6 +26,20 @@ class UsersController < ApplicationController
 		else
 			render 'new'
 		end
+	end
+
+	def update
+		if @user.update(user_params)
+			redirect_to @user, notice: "Perfil Atualizado com Sucesso"
+		else
+			render 'new'
+		end
+	end
+
+	def destroy
+		@user.destroy
+		user_session.destroy
+		redirect_to root_path, notice: "Você excluiu sua conta."
 	end
 
 	private

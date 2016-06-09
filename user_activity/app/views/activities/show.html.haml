@@ -6,7 +6,13 @@
 	%ul.list-unstyled.list-activity
 		%li
 			%div.description= @activity.description
-			%div= @activity.user.full_name
+			%div
+				- if @activity.user 
+					= @activity.user.full_name
+				-else
+					Sem Autor
+				
+
 			%div.created_at
 				postado em: 
 				= @activity.created_at.strftime("%d %b %Y")
